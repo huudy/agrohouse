@@ -1,10 +1,13 @@
+import { RoomDetailComponent } from './room/room-detail/room-detail.component';
+import { RoomsComponent } from './room/rooms/rooms.component';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { RoomComponent } from './room/room.component';
 
 
 
 const routes: Routes = [
-    { path: '', component: RoomComponent }
+    { path: '', redirectTo:'/room', pathMatch: 'full' },
+    { path: 'rooms', component: RoomsComponent},
+    { path: 'rooms/:id', component: RoomDetailComponent }
 ];
 export const routing = RouterModule.forRoot(routes);

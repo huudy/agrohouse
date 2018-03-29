@@ -1,3 +1,20 @@
-<p>
-  room-list works!
-</p>
+
+    <div class="jumbotron">
+        <div class="container">
+            <div class="col-md-offset-2">
+                    <h1>Here are our rooms</h1>
+                    <p>Take a look at something really cool</p>
+                    <button class="btn btn-warning">Checkout</button>
+            </div>
+        </div>
+    </div>
+    <hr class="sexy_line">
+    <app-spinner *ngIf="!loaded"></app-spinner>
+    <div *ngIf="loaded" class="container">
+        <div class="row">
+            <app-room 
+                *ngFor="let room of rooms; let i = index"
+                [room]="room">
+            </app-room>
+        </div> 
+    </div>       

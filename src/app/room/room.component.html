@@ -1,3 +1,11 @@
-<p>
-  room works!
-</p>
+<div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+        <img src={{room.img}} alt="...">
+        <!-- <img src="../../assets/img/house2.jpg" alt="..."> -->
+        <div class="caption">
+            <h3>Room</h3>
+            <p>Number of beds: <strong>{{room.beds}}</strong></p>
+            <p><a [routerLink]="['/rooms', room.id]" class="btn btn-primary" role="button">Details</a> <a href="#" class="btn btn-success" role="button">Reserve</a></p>
+        </div>
+    </div>        
+</div>

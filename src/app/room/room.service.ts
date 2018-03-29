@@ -11,7 +11,7 @@ export class RoomService {
         console.log(this.url);
     }
 
-    url = process.env.NODE_ENV == undefined? "http://localhost:5000":"https://fathomless-forest-76699.herokuapp.com";
+    url = "http://localhost:5000";
 
     private rooms:Room[]=[];
     
@@ -71,17 +71,22 @@ export class RoomService {
    
     
     getRooms(){
-      return this.http.get(this.url+'/room')
-      .map((response:Response)=>{ 
-          const rooms = response.json().obj;
+      return this.http.get(this.url+'/rooms')
+      .map((response)=>{ 
+          const rooms = JSON.parse(response.json());
+          console.log('Rooms: '+response)
+          console.log('JSONRooms: '+rooms)
           let transformedRooms: Room[] =[]; 
           for(let room of rooms){
-              transformedRooms.push(new Room(room._id, room.beds, this.base64ArrayBuffer(room.img.data.data), room.bookings_id ));
+              console.log('One room: '+room._id.$oid)
+              
+              transformedRooms.push(new Room(room._id.$oid, room.beds, room.img, room.bookings_id ));
           }
           this.rooms = transformedRooms;      
           return transformedRooms;
       })
       .catch((error:Response)=>{
+          console.log('Error: '+error)
           return Observable.throw(error.json())
       }); 
     }
@@ -89,10 +94,10 @@ export class RoomService {
     findById(id){
         return this.http.get(this.url+'/room/'+id)
         .map((response:Response)=>{
-            var res = response.json();
+            var res = JSON.parse(response.json());
             console.log(res);
-            var room = new Room(res._id, res.beds, this.base64ArrayBuffer(res.img.data.data), res.bookings, res.reserved);
-
+            var room = new Room(res._id.$oid, res.beds, res.img, res.bookings, res.reserved);
+            console.log(room);
             return room;
         })
         .catch((error:Response)=>{

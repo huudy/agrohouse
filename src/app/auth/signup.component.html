@@ -1,0 +1,54 @@
+<div class="container">
+        <div class="row main">
+            <div class="main-login main-center">
+            <h5>Sign up once and enjoy booking pleasent rooms</h5>
+                <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+                    
+                    <div class="form-group">
+                        <label for="firstname" class="cols-sm-2 control-label">Your Name</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" formControlName="firstname" id="firstname"  placeholder="Enter your Name"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastname" class="cols-sm-2 control-label">Last Name</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" formControlName="lastname" id="lastname"  placeholder="Enter your Last Name"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="cols-sm-2 control-label">Your Email</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" formControlName="email" id="email"  placeholder="Enter your Email"/>
+                            </div>
+                        </div>
+                    </div>                    
+
+                    <div class="form-group">
+                        <label for="password" class="cols-sm-2 control-label">Password</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                <input type="password" class="form-control" formControlName="password" id="password"  placeholder="Enter your Password"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                            <button class="btn btn-success btn-lg btn-block" type="submit" [disabled]="!signupForm.valid">Register</button>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
