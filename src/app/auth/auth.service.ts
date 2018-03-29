@@ -9,14 +9,14 @@ import { ErrorService } from '../errors/error.service';
 export class AuthService {
     constructor(private http:Http, private errorSvc:ErrorService){}
 
-    url = "http://localhost:5000/"
+    url = "http://localhost:5000"
 
     signup(user:User){
         const body = JSON.stringify(user);
         const header = new Headers({
             'content-type':'application/json'
         });
-        return this.http.post(this.url+'/user', body, {headers:header})
+        return this.http.post(this.url+'/register', body, {headers:header})
         .map((response:Response) => response.json())
         .catch((error:Response)=>{
             this.errorSvc.handleError(error.json());
@@ -31,7 +31,7 @@ export class AuthService {
         const header = new Headers({
             'Content-Type':'application/json'
         });
-        return this.http.post(this.url+'/user/login', {email:user.email,password:user.password}, {headers:header})
+        return this.http.post(this.url+'/login', {email:user.email,password:user.password}, {headers:header})
         .map((response:Response) => response.json())
         .catch((error:Response)=>{
             this.errorSvc.handleError(error.json());
