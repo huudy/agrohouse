@@ -74,12 +74,8 @@ export class RoomService {
       return this.http.get(this.url+'/rooms')
       .map((response)=>{ 
           const rooms = JSON.parse(response.json());
-          console.log('Rooms: '+response)
-          console.log('JSONRooms: '+rooms)
           let transformedRooms: Room[] =[]; 
-          for(let room of rooms){
-              console.log('One room: '+room._id.$oid)
-              
+          for(let room of rooms){              
               transformedRooms.push(new Room(room._id.$oid, room.beds, room.img, room.bookings_id ));
           }
           this.rooms = transformedRooms;      

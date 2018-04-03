@@ -1,3 +1,6 @@
+import { LogoutComponent } from './auth/logout.component';
+import { BookingComponent } from './booking/booking.component';
+import { BookingService } from './booking/booking.service';
 import { SignupComponent } from './auth/signup.component';
 import { RoomModule } from './room/room.module';
 import { RouterModule } from '@angular/router';
@@ -17,6 +20,7 @@ import { HttpModule } from '@angular/http';
 import { CalendarModule } from 'angular-calendar';
 import { LoginComponent } from './auth/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ErrorComponent } from './errors/error.component';
 
 
 @NgModule({
@@ -25,7 +29,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     NavbarComponent,
     SpinnerComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    LogoutComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +45,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   providers: [
     AuthService,
-    ErrorService
+    ErrorService,
+    BookingService
     ], 
   bootstrap: [AppComponent]
 })

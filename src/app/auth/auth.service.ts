@@ -40,7 +40,21 @@ export class AuthService {
     }
 
     logout(){
+        
+        const token = localStorage.getItem('token')? localStorage.getItem('token'):"";
         localStorage.clear();
+        const header = new Headers({
+            'Content-Type':'application/txt',
+            'Authorization': 'Bearer ' + token 
+        });
+        return this.http.post(this.url+'/logout',"",{headers:header})
+        .map((response:Response) => console.log(response))
+        .catch((error:Response) =>{
+            console.log(error.json())
+            this.errorSvc.handleError(error.json());
+            return Observable.throw(error.json())
+        })
+;
     }
 
     isLoggedIn(){

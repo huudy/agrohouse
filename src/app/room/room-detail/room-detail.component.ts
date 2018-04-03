@@ -1,6 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, ViewChild, TemplateRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
 import { RoomService } from '../room.service';
 import { Room } from '../room.model';
 import { CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent} from 'angular-calendar';
@@ -40,22 +39,22 @@ export class RoomDetailComponent implements OnInit {
 
                 this.room = room;
                 
-                var tempEvents= [];
+                var tempEvents: CalendarEvent[]=[];
                 
-                for(var i =0;i<this.room.reserved.length;i++){
-
-                    var a = moment(this.room.reserved[i].startDate,'YYYY-MM-DD');
-                    var b = moment(this.room.reserved[i].endDate,'YYYY-MM-DD');
+                for(var i =0;i<room.reserved.length;i++){
                     
+                    var a = moment(this.room.reserved[i].start_date,'YYYY-MM-DD');
+                    var b = moment(this.room.reserved[i].end_date,'YYYY-MM-DD');
                     var diffDays = b.diff(a, 'days');
 
                     tempEvents.push({
-                        start: new Date(this.room.reserved[i].startDate),
-                        end: diffDays==1? new Date(this.room.reserved[i].startDate): new Date(this.room.reserved[i].endDate),
+                        start: new Date(this.room.reserved[i].start_date),
+                        end: diffDays==1? new Date(this.room.reserved[i].start_date): new Date(this.room.reserved[i].end_date),
                         title: 'Already booked',
                         color: colors.red});    
                 }
                 this.events = tempEvents;
+                console.log('Calendar events: '+JSON.stringify(this.events))
             });
         });     
     }

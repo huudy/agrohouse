@@ -25,6 +25,7 @@ export class SignupComponent implements OnInit {
         this.authSvc.signup(user).subscribe(
             data =>console.log(data),
             error => console.log(error)
+        
         )
 
         this.signupForm.reset();

@@ -6,7 +6,8 @@ export class ErrorService {
     errorOccurred = new EventEmitter<Error>();
 
     handleError(error: any) {
-        const errorData = new Error(error.title, error.error.message);
+        console.log('Error  service: '+JSON.stringify(error))
+        const errorData = new Error(error.title, error.message);
         this.errorOccurred.emit(errorData);
     }
 }

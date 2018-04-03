@@ -9,8 +9,12 @@ import { Router } from '@angular/router';
 export class LogoutComponent implements OnInit {
     constructor(private authSvc:AuthService, private router:Router) { }
     onLogout(){
-        this.authSvc.logout();
-        this.router.navigate(['/messages']);
+        console.log('LOGOUT COMPONENT: ')
+        this.authSvc.logout().subscribe(
+            data => console.log(data),
+            error => console.log(error.json())
+        );
+        this.router.navigate(['/']);
     }
     ngOnInit() { }
 }
