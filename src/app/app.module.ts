@@ -21,13 +21,13 @@ import { CalendarModule } from 'angular-calendar';
 import { LoginComponent } from './auth/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ErrorComponent } from './errors/error.component';
+import { TokenService } from './auth/token.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    SpinnerComponent,
     LoginComponent,
     SignupComponent,
     LogoutComponent,
@@ -46,7 +46,8 @@ import { ErrorComponent } from './errors/error.component';
   providers: [
     AuthService,
     ErrorService,
-    BookingService
+    BookingService,
+    TokenService
     ], 
   bootstrap: [AppComponent]
 })

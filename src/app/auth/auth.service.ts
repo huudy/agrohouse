@@ -4,10 +4,11 @@ import { Http, Headers, Response } from '@angular/http';
 import 'rxjs/Rx';
 import {Observable} from 'rxjs';
 import { ErrorService } from '../errors/error.service';
+import { TokenService } from './token.service';
 
 @Injectable()
 export class AuthService {
-    constructor(private http:Http, private errorSvc:ErrorService){}
+    constructor(private http:Http, private errorSvc:ErrorService, private tokenSvc:TokenService){}
 
     url = "http://localhost:5000"
 
@@ -22,7 +23,6 @@ export class AuthService {
             this.errorSvc.handleError(error.json());
             return Observable.throw(error.json())
         });
-
     }
 
     login(user:User){
@@ -32,7 +32,10 @@ export class AuthService {
             'Content-Type':'application/json'
         });
         return this.http.post(this.url+'/login', {email:user.email,password:user.password}, {headers:header})
-        .map((response:Response) => response.json())
+        .map((response:Response) => {
+            console.log(JSON.stringify(response.json()))
+            return response.json()
+        })
         .catch((error:Response)=>{
             this.errorSvc.handleError(error.json());
             return Observable.throw(error.json())
@@ -41,8 +44,8 @@ export class AuthService {
 
     logout(){
         
-        const token = localStorage.getItem('token')? localStorage.getItem('token'):"";
-        localStorage.clear();
+        const token = this.tokenSvc.token;
+        this.tokenSvc.destroy();
         const header = new Headers({
             'Content-Type':'application/txt',
             'Authorization': 'Bearer ' + token 
@@ -58,7 +61,7 @@ export class AuthService {
     }
 
     isLoggedIn(){
-        return localStorage.getItem('token') !== null;
+        return !!this.tokenSvc.token;
     }
 
     public isAuthenticated(): boolean {

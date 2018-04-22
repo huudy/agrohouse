@@ -26,7 +26,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     RoomListComponent,
     RoomDetailComponent,
     RoomsComponent,
-    BookingComponent
+    BookingComponent,
+    SpinnerComponent
   ],
   providers:[RoomService],
   exports:[RoomsComponent]

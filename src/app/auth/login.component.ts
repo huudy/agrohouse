@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 
 import { User } from './user.model';
 import { AuthService } from './auth.service';
+import { TokenService } from './token.service';
 
 
 @Component({
@@ -12,21 +13,21 @@ import { AuthService } from './auth.service';
     templateUrl: './login.component.html'
 })
 export class LoginComponent implements OnInit {
-    constructor(private authSvc:AuthService, private router:Router) { }
+    constructor(private authSvc:AuthService, private router:Router, private tokenSvc:TokenService) { }
 
     onSubmit(){
         const user = new User(this.loginForm.value.email, this.loginForm.value.password);
         this.authSvc.login(user).subscribe(
             data=> {
-                console.log("Login component ", data)
-                localStorage.setItem('token', data.token);
-                localStorage.setItem('userId', data.userId);
-                localStorage.setItem('expires_at', JSON.stringify((data.expiresIn * 1000) + new Date().getTime()));
-                this.router.navigateByUrl('/');
+                console.log("Login component: "+JSON.stringify(data.message))
+                this.tokenSvc.token = data.token
+                this.tokenSvc.userId = data.userId
+                this.tokenSvc.expiresAt = JSON.stringify((data.expiresIn * 1000) + new Date().getTime())
+                this.router.navigateByUrl('/'); 
+                               
             },
             error => console.log("Eror login component ",error)
         );
-
         this.loginForm.reset();
     }
 

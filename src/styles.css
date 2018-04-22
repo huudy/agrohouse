@@ -351,7 +351,7 @@ body {
   /* background: linear-gradient(135deg, rgb(151, 57, 153), rgb(248, 89, 139) 60%, rgb(247, 191, 0)); */
 }
 .jumbotron{
-  background-image: url("assets/img/back3.png");
+  background-image: url("assets/img/back.png");
   background-size: cover;
 }
 
