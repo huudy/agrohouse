@@ -1,0 +1,20 @@
+
+    <div class="jumbotron">
+      <div class="container">
+          <div class="col-md-offset-2">
+                  <h1>Here are our instructors</h1>
+                  <p>Take a look at something really cool</p>
+                  <button class="btn btn-warning">Checkout</button>
+          </div>
+      </div>
+  </div>
+  <!-- <hr class="sexy_line">
+  <app-spinner *ngIf="!loaded"></app-spinner> -->
+  <div *ngIf="loaded" class="container">
+      <div class="row">
+          <app-instructor 
+              *ngFor="let instructor of instructors; let i = index"
+              [instructor]="instructor">
+          </app-instructor>
+      </div> 
+  </div>       

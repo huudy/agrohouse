@@ -1,0 +1,19 @@
+<form (ngSubmit)="onSubmit()" >
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label for="startDate">Start Date</label>
+                <ng-datepicker (ngModelChange)="dateCheck($event)" [(ngModel)]="startDate" [options]="options" name="start"></ng-datepicker> 
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label for="endDate">End Date</label>
+                <ng-datepicker (ngModelChange)="dateCheck($event)" [(ngModel)]="endDate" [options]="options" name="end"></ng-datepicker>
+            </div>
+        </div>
+    </div>        
+    <button class="btn btn-success" type="submit">Submit</button>
+    
+</form>
+<button class="btn btn-success" (click)="checkRoom()">CheckRoom</button>
