@@ -22,6 +22,11 @@ import { LoginComponent } from './auth/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ErrorComponent } from './errors/error.component';
 import { TokenService } from './auth/token.service';
+import { InstructorComponent } from './instructor/instructor/instructor.component';
+import { InstructorDetailComponent } from './instructor/instructor-detail/instructor-detail.component';
+import { InstructorListComponent } from './instructor/instructor-list/instructor-list.component';
+import { IntructorsComponent } from './instructor/intructors/intructors.component';
+import { InstructorService } from './instructor/instructor.service';
 
 
 @NgModule({
@@ -31,7 +36,11 @@ import { TokenService } from './auth/token.service';
     LoginComponent,
     SignupComponent,
     LogoutComponent,
-    ErrorComponent
+    ErrorComponent,
+    InstructorComponent,
+    InstructorDetailComponent,
+    InstructorListComponent,
+    IntructorsComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +56,8 @@ import { TokenService } from './auth/token.service';
     AuthService,
     ErrorService,
     BookingService,
-    TokenService
+    TokenService,
+    InstructorService
     ], 
   bootstrap: [AppComponent]
 })
