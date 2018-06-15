@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http,Response,Headers} from '@angular/http';
 import { Instructor } from './instructor.model';
 
 import 'rxjs/Rx';
@@ -31,6 +31,19 @@ export class InstructorService {
     })
    }
 
-   
+ 
+   findById(id){
+    return this.http.get(this.url+'/room/'+id)
+    .map((response)=>{
+        var res = JSON.parse(response.json());
+        console.log(res);
+        var instructor = new Instructor(res._id.$oid, res.name, res.age, res.img,res.desc, res.reserved);
+        console.log(instructor);
+        return instructor;
+    })
+    .catch((error:Response)=>{
+        return Observable.throw(error.json())
+    }); 
+}
 
 }

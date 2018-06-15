@@ -27,6 +27,8 @@ import { InstructorDetailComponent } from './instructor/instructor-detail/instru
 import { InstructorListComponent } from './instructor/instructor-list/instructor-list.component';
 import { IntructorsComponent } from './instructor/intructors/intructors.component';
 import { InstructorService } from './instructor/instructor.service';
+import { InstructorModule } from './instructor/instructor/instructor.module';
+import { BookingModule } from './booking/booking.module';
 
 
 @NgModule({
@@ -40,7 +42,8 @@ import { InstructorService } from './instructor/instructor.service';
     InstructorComponent,
     InstructorDetailComponent,
     InstructorListComponent,
-    IntructorsComponent
+    IntructorsComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -50,7 +53,12 @@ import { InstructorService } from './instructor/instructor.service';
     CalendarModule.forRoot(),
     NgDatepickerModule,
     BrowserAnimationsModule,
-    RoomModule
+    RoomModule,
+    InstructorModule,
+    BookingModule
+  ],
+  exports:[
+  
   ],
   providers: [
     AuthService,

@@ -14,5 +14,6 @@ export class InstructorComponent implements OnInit {
 
   ngOnInit() {
   }
-
+ 
 }
+ 

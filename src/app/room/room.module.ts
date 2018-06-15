@@ -12,6 +12,7 @@ import { RouterModule } from '@angular/router';
 import { SpinnerComponent } from '../spinner/spinner.component';
 import { CalendarModule } from 'angular-calendar';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BookingModule } from '../booking/booking.module';
 
 @NgModule({
   imports: [
@@ -19,15 +20,16 @@ import { ReactiveFormsModule } from '@angular/forms';
     RouterModule,
     CalendarModule.forRoot(),
     NgDatepickerModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BookingModule
   ],
   declarations: [
     RoomComponent,
     RoomListComponent,
     RoomDetailComponent,
-    RoomsComponent,
-    BookingComponent,
-    SpinnerComponent
+    RoomsComponent,    
+    SpinnerComponent,  
+    
   ],
   providers:[RoomService],
   exports:[RoomsComponent]
